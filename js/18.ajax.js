@@ -24,20 +24,20 @@ function onAjax() {
 
 // $.get(url, sendData, callBack);
 function onAjaxTeacher() {
-	$.get('http://192.168.0.20:5500/json/score.json', dataMaker);
+	$.get('http://192.168.0.14:5500/json/score.json', dataMaker);
 }
 
 function onWeather() {
 	var url = 'https://api.openweathermap.org/data/2.5/weather';
 	var data = {
-		appid: 'a290781ee44d592172853ecf55db863d',
+		appid: '02efdd64bdc14b279bc91d9247db4722',
 		id: '1835848',
 		units: 'metric'
 	};
 	var success = function(r) {
 		console.log(r);
-		$("#weatherTbl .temp-td").html(r.main.temp+'도 (체감온도:'+r.main.feels_like+'도)');
-		$("#weatherTbl .weather-td").html(r.weather[0].main+'('+r.weather[0].description+')');
+		$("#weatherTbl .temp-td").html(r.main.temp+'도 (체감온도: '+r.main.feels_like+'도)');
+		$("#weatherTbl .weather-td").html(r.weather[0].main+' ('+r.weather[0].description+')');
 	}
 	$.get(url, data, success);
 }

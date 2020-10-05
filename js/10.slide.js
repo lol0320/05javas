@@ -413,17 +413,17 @@
 	var $slideWrap = $(".slide-wrap", $wrapper); 
 	var $btnPrev = $(".btn-prev", $wrapper); 
 	var $btnNext = $(".btn-next", $wrapper);
-	var $slides = [];   //모든 .slides
-	var idx = 11;
+	var $slides = [];		// 모든 .slide
+	var idx = 0;
 	var lastIdx = datas.length - 1;
-	var winWid; //현재 창의 크기
+	var winWid;					// 현재창의 크기
 	var target;
 	var interval;
-  
+
 	/*********** 사용자 함수 ***********/
 	init();
 	function init() {
-		var html, i;
+		var i, html;
 		for(i in datas) {
 			html  = '<div class="slide">';
 			html += '<img src="'+datas[i].src+'" class="w-100">';
@@ -431,39 +431,40 @@
 			html += '</div>';
 			$slides.push($(html));
 		}
-		
 		slideInit();
 		interval = setInterval(onNext, 3000);
 	}
-	
-function slideInit(){
-	/* $btnPrev.show();
-	$btnNext.show(); */
-	$btnPrev.off("click").click(onPrev);
-	$btnNext.off("click").click(onNext);
-	$($slides[idx].clone()).appendTo($slideWrap.empty().attr("style",""));
-if(idx == 0)  $($slides[lastIdx].clone()).prependTo($slideWrap);
-else $($slides[idx - 1].clone()).prependTo($slideWrap);
-for(var i=1; i<=4; i++){
-if(idx + i > lastIdx ) $($slides[idx + i - 1 - lastIdx].clone()).appendTo($slideWrap);
-else $($slides[idx + i].clone()).appendTo($slideWrap);
-}
-}
-	
-function ani(){
-	$slideWrap.stop().animate({"left": target+"%"}, 500, slideInit);
+
+	function slideInit() {
+		// $btnPrev.show();
+		// $btnNext.show();
+		$btnPrev.off("click").click(onPrev);
+		$btnNext.off("click").click(onNext);
+		$($slides[idx].clone()).appendTo($slideWrap.empty().attr("style", ""));
+		if(idx == 0) $($slides[lastIdx].clone()).prependTo($slideWrap);
+		else $($slides[idx - 1].clone()).prependTo($slideWrap);
+		for(var i=1; i<=4; i++) {
+			if(idx + i > lastIdx) $($slides[idx + i - 1 - lastIdx].clone()).appendTo($slideWrap);
+			else $($slides[idx + i].clone()).appendTo($slideWrap);
+		}
 	}
+
+	function ani() {
+		$slideWrap.stop().animate({"left": target+"%"}, 500, slideInit);
+	}
+
 	/*********** 이벤트 콜백 ***********/
-	function onPrev(){
-	//	$(this).hide();
-	$(this).off("click");
+	function onPrev() {
+		// $(this).hide();
+		$(this).off("click");
 		idx = idx == 0 ? lastIdx : idx - 1;
 		target = 0;
 		ani();
 	}
-	function onNext(){
-	//	$(this).hide();
-	$(this).off("click");
+	
+	function onNext() {
+		// $(this).hide();
+		$(this).off("click");
 		idx = idx == lastIdx ? 0 : idx + 1;
 		winWid = $(window).outerWidth();
 		if(winWid < 576) target = -200;
@@ -471,15 +472,13 @@ function ani(){
 		else if(winWid < 992) target = -66.6666;
 		else target = -50;
 		ani();
-	
 	}
 
-	
 	/*********** 이벤트 등록 ***********/
-$wrapper.hover(function(){
-clearInterval(interval);
-},function(){
-interval = setInterval(onNext, 3000);
-}); 
+	$wrapper.hover(function(){
+		clearInterval(interval);
+	}, function(){
+		interval = setInterval(onNext, 3000);
+	});
 
 })();
