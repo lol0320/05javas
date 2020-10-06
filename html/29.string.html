@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="userpw">
+	<button id="btnSend">가입</button>
+</body>
+</html>
+
+
+<script>
+	var str = 'Hello World Wide Web';
+
+	//문자열 길이
+console.log(str.length);
+
+	//문자열 검색
+	console.log(str.indexOf('h'));
+	console.log(str.lastIndexOf('W'));
+	console.log(str.search('W'));
+
+	//문자열 추출
+	console.log(str.slice(1,8));  //첫번째 index에서 두번째 index 직전까지의 문자
+	console.log(str.substring(1,8));//첫번째 index에서 두번째 index 직전까지의 문자
+	console.log(str.substr(1,8));//첫번째 index에서 두번째 숫자(개수)의 문자
+
+	console.log(str.slice(-5)); //뒤에서 부터 찾아서 가져옴
+	console.log(str.substring(-5)); //음수는 무시
+
+//ES6
+	console.log(str.startsWith('H')); 
+	console.log(str.endsWith('b'));
+
+	//특수문자 표현 - \' \" \\ \n(개행) \t(탭)
+	var str =  '"Hello" \\ \'World\'';   
+
+	console.log(str.replace('"','\''));
+
+	//문자열 치환 
+	var str = 'Hello World wide wide wide Web';
+	var newStr = str.replace(/W/g,'w');   // /W/g 전체에서 W->w
+  console.log(newStr);
+
+	var newStr = str.replace(/wide/gi,'global');   // /W/gi 대문자 소문자 무시
+  console.log(newStr);
+
+//정규표현식 맛보기
+	var str = 'who is who'
+	var regStr = str.replace(/who$/g,'what')  //^맨 앞에 있는 단어 교체 //$맨 뒤에 있는 단어 교체
+	console.log(regStr);
+
+document.querySelector('#btnSend').addEventListener("click",function(){
+	var userpw = document.querySelector('#userpw').value;
+
+	//대문자, 소문자, 숫자, 특수문자 8~15
+	/* var regExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+	if(regExp.test(userpw))alert("yes");
+	else alert("no");
+ */
+
+ //이메일 
+	var regExp =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	if(regExp.test(userpw))alert("yes");
+	else alert("no");
+});
+
+
+
+</script>

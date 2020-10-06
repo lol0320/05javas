@@ -1,0 +1,22 @@
+<script>
+	console.log(this);
+	function test(){
+		console.log(this);
+	}
+	test();
+
+	var obj = {
+		a:'A',
+		b:'B',
+		c: function(){
+			console.log(this);
+		},
+		addClass: function(str){
+
+		}
+}
+obj.c();
+
+//객체만들기
+
+</script>
