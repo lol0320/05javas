@@ -67,6 +67,8 @@
 
 		//find(): 자손, children: 자식, parent(): 부모, parents(): 조상, next(), prev(), siblings(), first(), last()
 		$(".pager").click(function(){
+			console.log($(this).parent().parent().parent());
+			console.log($(this).parents(".wrapper"));
 			$pager = $(this);
 			$list = $(this).parent().prev().find(".list").eq($(this).index());
 			/*

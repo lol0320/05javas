@@ -1,0 +1,97 @@
+<script src="../js/moment-with-locales.min.js"></script>
+<script>
+	var dt = new Date();
+	console.log(dt);
+	
+	var dt = new Date('2020-12-25 11:15:12');
+	console.log(dt);
+	
+	var dt = new Date('2020-12-25 11:15:12');
+	console.log(	dt.toLocaleString()	);
+	
+	// timestamp가져오기
+	var dt = new Date();
+	console.log(	dt.getTime()	);
+	
+	// 년도 가져오기
+	var dt = new Date();
+	console.log(	dt.getFullYear()	);
+	
+	// 월 가져오기
+	var month = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+	var dt = new Date();
+	console.log(	month[dt.getMonth()]	);
+	
+	// 일 가져오기
+	var dt = new Date();
+	console.log(	dt.getDate()	);
+	
+	// 요일 가져오기
+	var week = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일']
+	var dt = new Date();
+	console.log(	week[dt.getDay()]	);
+	
+	// 시 가져오기
+	var dt = new Date();
+	console.log(	dt.getHours()	);
+	
+	// 분 가져오기
+	var dt = new Date();
+	console.log(	dt.getMinutes()	);
+	
+	// 초 가져오기
+	var dt = new Date();
+	console.log(	dt.getSeconds()	);
+
+	// 우리나라 표기로 변경하기
+	var dt = new Date();
+	var koreaDt = dt.getFullYear() + "년 ";
+	koreaDt += month[dt.getMonth()] + " ";
+	koreaDt += dt.getDate() + "일 ";
+	koreaDt += dt.getHours() + "시 ";
+	koreaDt += dt.getMinutes() + "분 ";
+	koreaDt += dt.getSeconds() + "초 ";
+	koreaDt += week[dt.getDay()];
+	console.log(koreaDt);
+
+	// moment 우리나라 표기로 변경하기
+	moment.locale('ko');
+	console.log(	moment().format('LT')	);   // 오후 2:33
+	console.log(	moment().format('LTS')	); // 오후 2:33:48
+	console.log(	moment().format('L')	);   // 2020.10.12.
+	console.log(	moment().format('LL')	);   // 2020년 10월 12일
+	console.log(	moment().format('LLL')	); // 2020년 10월 12일 오후 2:33
+	console.log(	moment().format('LLLL')	); // 2020년 10월 12일 월요일 오후 2:35
+
+	// moment ISO 표기로 변경하기
+	console.log(	moment().format('YYYY-MM-DD HH:mm:ss')	);
+	console.log(	moment().format('YYYY년 MM월 DD일 HH시 mm분 ss초')	);
+	console.log(	moment().format('YYYY년 MM월 DD일 HH시')	);
+
+	// 날짜, 시간 계산하기
+	// 1. 현 시간으로부터 20일 뒤
+	var dt = new Date().getTime() + 1000 * 60 * 60 * 24 * 20;
+	console.log(new Date(dt));
+
+	// years	 				=> y
+	// months	 				=> M
+	// weeks	 				=> w
+	// days	 					=> d
+	// hours	 				=> h
+	// minutes	 			=> m
+	// seconds	 			=> s
+	// milliseconds	 	=> ms
+	// moment().add(7, 'days').add(1, 'months'); // with chaining
+  // moment().add({days:7, months:1}); // with object literal
+	// moment().add(7, 'd').add(1, 'M'); // with chaining
+  // moment().add({d:7, M:1}); // with object literal
+
+	var dt = moment().add(20, 'd').format('YYYY-MM-DD HH:mm:ss');
+	console.log(dt);
+	
+	var dt = moment().add(-20, 'd').format('YYYY-MM-DD HH:mm:ss');
+	console.log(dt);
+
+	var dt = moment().subtract(20, 'd').format('YYYY-MM-DD HH:mm:ss');
+	console.log(dt);
+</script>
